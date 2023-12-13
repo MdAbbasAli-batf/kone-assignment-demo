@@ -1,4 +1,4 @@
-name: Docker Image Build and push to docker hub
+name: Build and Artifacts
 
 on:
   #push:
@@ -15,6 +15,16 @@ jobs:
     steps:
     - name: Check out the repo
       uses: actions/checkout@v4
+
+    - name: Configure CMake Build
+      run: cmake -B ${{github.workspace}}/build
+
+    - name: Build HelloWorld App
+      run: cmake --build ${{github.workspace}}/build
+
+    - name: Run Unit Test Gtest
+      working-directory: ${{github.workspace}}/build/tst
+      run: ./HelloWorldProject_tst
 
     - name: login to docker hub  
       uses: docker/login-action@v3
