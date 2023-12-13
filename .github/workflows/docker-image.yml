@@ -1,4 +1,4 @@
-name: Docker Image Build
+name: Docker Image Build and push to docker hub
 
 on:
   #push:
@@ -28,6 +28,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags:
-          - ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
+        tags: |
+          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
       
