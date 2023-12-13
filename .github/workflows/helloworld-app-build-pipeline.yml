@@ -1,4 +1,4 @@
-name: Build and Artifacts
+name: Build, Test, and Artifact
 
 on:
   #push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build Docker image and push to Docker Hub repository
+    name: Build & Unit-Test, Create Docker image and push to Docker Hub
     runs-on: ubuntu-latest
 
     steps:
@@ -22,17 +22,17 @@ jobs:
     - name: Build HelloWorld App
       run: cmake --build ${{github.workspace}}/build
 
-    - name: Run Unit Test Gtest
+    - name: Run Unit-Test Gtest
       working-directory: ${{github.workspace}}/build/tst
       run: ./HelloWorldProject_tst
 
-    - name: login to docker hub  
+    - name: login to Docker Hub  
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASS }}
 
-    - name: Build and push
+    - name: Build Docker image and push to Docker Hub repository
       uses: docker/build-push-action@v5
       with:
         context: .
