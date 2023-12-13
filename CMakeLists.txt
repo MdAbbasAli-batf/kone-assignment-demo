@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 # Set a default build type if none was specified
+set(CMAKE_SOURCE_DIR ".")
 set(default_build_type "Release")
 if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
   set(default_build_type "Debug")

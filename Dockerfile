@@ -7,8 +7,6 @@ WORKDIR /helloworld_app
 
 COPY . .
 
-WORKDIR /helloworld_app/build
-
-RUN cmake .. && cmake --build . --parallel 3
+RUN cmake -B ./build && cmake --build ./build
 
 CMD ["./src/HelloWorldProject_run"]
