@@ -29,5 +29,6 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
+          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:$GITHUB_RUN_NUMBER
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
       
