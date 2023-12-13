@@ -2,7 +2,7 @@
 #include "Helloworld.h"
 
 TEST(HelloWorld, Greetings) {
-	ASSERT_EQ("Hello world", Helloworld::greetings());
+	ASSERT_EQ("hello world", Helloworld::greetings());
 }
 
 int main(int argc, char** argv) {
