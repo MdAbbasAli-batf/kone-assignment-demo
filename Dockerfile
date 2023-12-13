@@ -9,4 +9,4 @@ COPY . .
 
 RUN cmake -B ./build && cmake --build ./build
 
-CMD ["./src/HelloWorldProject_run"]
+CMD ["./build/src/HelloWorldProject_run"]
