@@ -28,7 +28,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: |
-          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ steps.vars.outputs.tag }}
-          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
+        tags:
+          - ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
       
