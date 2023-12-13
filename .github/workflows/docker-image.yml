@@ -1,8 +1,5 @@
 name: Docker Image Build and push to docker hub
 
-env:
-  TAG_ID: ${GITHUB_RUN_NUMBER}
-
 on:
   #push:
   #  branches: [ "master" ]
@@ -32,6 +29,6 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{env.TAG_ID}}
+          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ github.run_number }}
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
       
