@@ -70,8 +70,7 @@ jobs:
       id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create ${{ needs.build.outputs.tag_name }} \
-              --generate-notes
+      run: |
+        gh release create ${{ needs.build.outputs.tag_name }} --generate-notes
 
 
