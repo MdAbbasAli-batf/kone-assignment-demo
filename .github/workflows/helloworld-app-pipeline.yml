@@ -41,7 +41,7 @@ jobs:
       id: create_tag
       working-directory: ${{github.workspace}}
       run: |
-          git tag -a v1.0.${{ github.run_number }} -m ${{ github.event.head_commit.message }}
+          git tag -a v1.0.${{ github.run_number }} -m ${{ github.event.workflow_run.head_commit.message }}
           git push --tags
           echo "tag_name=v1.0.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
@@ -69,7 +69,6 @@ jobs:
 
     steps:
     - name: Create Release
-      if: ${{ vars.RELEASE_ENABLED == 'True' }}
       id: create_release
       uses: actions/create-release@v1
       env:
