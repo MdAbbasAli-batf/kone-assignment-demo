@@ -19,6 +19,7 @@ jobs:
   build:
     name: Build & Unit-Test, Create Docker image and push to Docker Hub
     runs-on: ubuntu-latest
+    if: ${{ inputs.perform_action == 'release' || 'build' }}
     outputs:
       tag_name: ${{ steps.create_tag.outputs.tag_name }}
 
