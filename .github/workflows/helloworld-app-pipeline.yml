@@ -1,4 +1,4 @@
-name: Build, Test, and Artifact
+name: Build Test and Artifact
 
 on:
   #push:
@@ -42,3 +42,20 @@ jobs:
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ github.run_number }}
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
       
+    - name: Create Release
+      if: ${{ vars.RELEASE_ENABLED == 'True' }}
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        body: |
+          Changes in this Release
+          - First Change
+          - Second Change
+        draft: false
+        prerelease: false
+
+
