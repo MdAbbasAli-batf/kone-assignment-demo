@@ -11,3 +11,6 @@
 - Pipeline should have a logic to create release notes from list of Git merge on Master branch. 
 - If the unit test cases are successful, publish the image to dockerhub  
 - Have a strategy for tagging and branching enabled in the pipeline (Good to have/Optional)
+
+
+new release brnach.
