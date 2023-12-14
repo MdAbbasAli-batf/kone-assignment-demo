@@ -19,6 +19,8 @@ jobs:
   build:
     name: Build & Unit-Test, Create Docker image and push to Docker Hub
     runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.create_tag.outputs.tag_name }}
     if: ${{ inputs.perform_action == 'build' }}
 
     steps:
@@ -35,6 +37,14 @@ jobs:
       working-directory: ${{github.workspace}}/build/tst
       run: ./HelloWorldProject_tst
 
+    - name: On success above, create Tag & use it in Docker and Release
+      id: create_tag
+      working-directory: ${{github.workspace}}
+      run: |
+          git tag -a v1.0.${{ github.run_number }} -m ${{ github.event.head_commit.message }}
+          git push --tags
+          echo "tag_name=v1.0.${{ github.run_number }}" >> $GITHUB_OUTPUT
+
     - name: login to Docker Hub  
       uses: docker/login-action@v3
       with:
@@ -48,7 +58,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ github.run_number }}
+          ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ steps.create_tag.outputs.tag_name }}
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
 
 
