@@ -67,11 +67,18 @@ jobs:
     if: ${{ inputs.perform_action == 'release' }}
 
     steps:
+    - name: Create Release notes from list of Git merge on Master
+      id: create_release_notes
+      working-directory: ${{github.workspace}}
+      run: |
+        git clone --filter=blob:none --no-checkout --single-branch --branch master $GITHUB_SERVER_URL/$GITHUB_REPOSITORY .
+        git log master --first-parent --merges --pretty=format:"%h %<(10,trunc)%aN %C(white)%<(15)%ar%Creset %C(red bold)%<(15)%D%Creset %s" > ./release_notes.md
+    
     - name: Create Release
-      id: create_release
+      working-directory: ${{github.workspace}}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" --generate-notes
+        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" -F ./release_notes.md
 
 
