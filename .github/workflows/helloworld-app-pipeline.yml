@@ -6,11 +6,20 @@ on:
   #pull_request:
   #  branches: [ "master" ]
   workflow_dispatch:
+    inputs:
+      perform_action:
+        required: true
+        type: choice
+        options:
+        - build
+        - release
+        default: build
 
 jobs:
   build:
     name: Build & Unit-Test, Create Docker image and push to Docker Hub
     runs-on: ubuntu-latest
+    if: ${{ inputs.perform_action == 'build' }}
 
     steps:
     - name: Check out the repo
@@ -41,7 +50,14 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:${{ github.run_number }}
           ${{ secrets.DOCKERHUB_USER }}/kone-assignment-dockerrepo:latest
-      
+
+
+  release:
+    name: Release-Project
+    runs-on: ubuntu-latest
+    if: ${{ inputs.perform_action == 'release' }}
+
+    steps:
     - name: Create Release
       if: ${{ vars.RELEASE_ENABLED == 'True' }}
       id: create_release
@@ -53,8 +69,8 @@ jobs:
         release_name: Release ${{ github.run_number }}
         body: |
           Changes in this Release
-          - First Change
-          - Second Change
+          - First Change1
+          - Second Change2
         draft: false
         prerelease: false
 
