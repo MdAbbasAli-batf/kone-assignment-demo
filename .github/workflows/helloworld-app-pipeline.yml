@@ -73,12 +73,13 @@ jobs:
       run: |
         git clone --filter=blob:none --no-checkout --single-branch --branch master $GITHUB_SERVER_URL/$GITHUB_REPOSITORY .
         git log master --first-parent --merges --pretty=format:"%h %<(10,trunc)%aN %C(white)%<(15)%ar%Creset %C(red bold)%<(15)%D%Creset %s" > ./release_notes.md
+        echo -e "https://hub.docker.com/r/mdabbasali/kone-assignment-dockerrepo/tags\ndocker pull mdabbasali/kone-assignment-dockerrepo:${{ needs.build.outputs.tag_name }}" > ./asset.txt
     
     - name: Create Release
       working-directory: ${{github.workspace}}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" -F ./release_notes.md -t "${{ needs.build.outputs.tag_name }}: Released" "docker pull mdabbasali/kone-assignment-dockerrepo:${{ needs.build.outputs.tag_name }}"
+        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" -F ./release_notes.md -t "${{ needs.build.outputs.tag_name }}: Released" "./asset.txt#docker pull mdabbasali/kone-assignment-dockerrepo:${{ needs.build.outputs.tag_name }}"
 
 
