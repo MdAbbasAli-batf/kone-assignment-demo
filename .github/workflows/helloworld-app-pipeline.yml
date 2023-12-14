@@ -79,6 +79,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" -F ./release_notes.md -t "Released"
+        gh release create ${{ needs.build.outputs.tag_name }} --repo="$GITHUB_REPOSITORY" -F ./release_notes.md -t "${{ needs.build.outputs.tag_name }}: Released"
 
 
