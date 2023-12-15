@@ -1,4 +1,5 @@
 
+# Requirements:
 ## 1. Create a sample Hello world c++ project and then create a docker file for this cmake/c++ project
 
 - Manage unit tests with gtest 
@@ -13,5 +14,4 @@
 - Have a strategy for tagging and branching enabled in the pipeline (Good to have/Optional)
 
 
-new release brnach.
-Release again.
+
