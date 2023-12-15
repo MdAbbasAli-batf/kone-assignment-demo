@@ -10,7 +10,7 @@ Those relevant files can be identified and pumped out [Also in Docker container 
 
 find . -type f \( -iname *.gcno -o -iname *.gcda -o -iname *.gcov -o -iname coverage.info \) -exec mv {} "/tmp/" \;
 
-[Code coverage using gcov from the gcc test suite, I haven't used the flags (-ftest-coverage -fprofile-arcs) during compilation]
+[Code coverage using gcov from the gcc test suite, I haven't used the flags (-ftest-coverage -fprofile-arcs) during compilation, so in my build app there is no such logs]
 
  
 
