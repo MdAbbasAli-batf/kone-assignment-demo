@@ -44,9 +44,12 @@ https://hub.docker.com/r/mdabbasali/kone-assignment-dockerrepo/tags
 This release job will Create Release notes from the list of Git merges on Master branch. Then it will create a new release from the latest build and also will TAG the source code revision with the same TAG as Docker Image(already build by the build job). In the Release Asset section, it will show the Docker Image pull link with the correct TAG.
 
 After pulling the docker image, run the below command: it will show output "hello world"
+   ```markdown
+   docker run -it mdabbasali/kone-assignment-dockerrepo:<TAG>
+   docker run -it mdabbasali/kone-assignment-dockerrepo:v1.0.18
+   ```
 
-*docker run -it mdabbasali/kone-assignment-dockerrepo:<TAG>*
 
-*docker run -it mdabbasali/kone-assignment-dockerrepo:v1.0.18*
+
 
 ![image](https://github.com/MdAbbasAli-batf/kone-assignment-demo/assets/24863141/91881655-fe09-4fca-87f8-fc4392ed35ac)
