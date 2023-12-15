@@ -45,6 +45,7 @@ This release job will Create Release notes from the list of Git merges on Master
 
 After pulling the docker image, run the below command: it will show output "hello world"
    ```markdown
+   docker pull mdabbasali/kone-assignment-dockerrepo:<TAG>
    docker run -it mdabbasali/kone-assignment-dockerrepo:<TAG>
    docker run -it mdabbasali/kone-assignment-dockerrepo:v1.0.18
    ```
