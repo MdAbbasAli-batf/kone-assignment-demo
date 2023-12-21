@@ -14,6 +14,8 @@ project(HelloWorldProject)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(EXECUTABLE_OUTPUT_PATH "../../bin")
+
 include_directories(src)
 
 add_subdirectory(src)
