@@ -34,7 +34,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build
 
     - name: Run Unit-Test Gtest
-      working-directory: ${{github.workspace}}/build/tst
+      working-directory: ${{github.workspace}}/bin
       run: ./HelloWorldProject_tst
 
     - name: On success above, create Tag & use it in Docker Image and Release
